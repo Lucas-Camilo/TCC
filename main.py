@@ -17,10 +17,16 @@ class Gerenciador(ScreenManager):
 
 
 class Login(Screen):
+    class Entrar(Screen):
+        def __init__(self, **kwargs):
+            super().__init__(**kwargs)
     pass
 
 
 class Main(Screen):
+    class Entrar(Screen):
+        def __init__(self, **kwargs):
+            super().__init__(**kwargs)
     pass
 
 

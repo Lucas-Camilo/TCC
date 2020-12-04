@@ -84,27 +84,37 @@
                     size_hint: (None, 1)
                     width: self.minimum_width
                     pos_hint: {'center_x':.5, 'center_y':.5}
-
                     Button:
-                        text: "Enviar"
-                        size: 120, 100
+                        size: 120, 120
                         size_hint: None, None
+                        StackLayout:
+                            pos: self.parent.pos
+                            size: self.parent.size
+                            orientation: 'lr-tb'
+                            Image:
+                                source: 'images/up-video.png'
+                                border: 0,0,0,0
+                                size_hint: (None, None)
+                                width: 100
+                            Label:
+                                size_hint: (.9, .01)
+                                width: 100
+                                font_size: '18'
+                                text: "Enviar Video"
                     Button:
-                        text: "Registros"
-                        size: 120, 100
+                        size: 120, 120
                         size_hint: None, None
-                BoxLayout:
-                    orientation: 'horizontal'
-                    spacing: 50
-                    size_hint: (None, 1)
-                    width: self.minimum_width
-                    pos_hint: {'center_x':.5, 'center_y':.5}
-
-                    Button:
-                        text: "Enviar"
-                        size: 120, 100
-                        size_hint: None, None
-                    Button:
-                        text: "Registros"
-                        size: 120, 100
-                        size_hint: None, None
+                        StackLayout:
+                            pos: self.parent.pos
+                            size: self.parent.size
+                            orientation: 'lr-tb'
+                            Image:
+                                source: 'images/tarefa.png'
+                                border: 0,0,0,0
+                                size_hint: (None, .7)
+                                width: 100
+                            Label:
+                                size_hint: (.9, .4)
+                                width: 100
+                                font_size: '18'
+                                text: "Registro"
