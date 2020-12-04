@@ -1,0 +1,110 @@
+<Gerenciador>:
+    Main:
+        name: 'main'
+    Login:
+        name: 'login'
+
+
+<Login>:
+    BoxLayout:
+        orientation:'vertical'
+        size_hint_y: .4
+        pos_hint: {'center_x':.5, 'center_y':.5}
+        spacing: 20
+        Image:
+            source:"images/placeholder-logo.png"
+            size_hint_y: None
+            height: 150
+        TextInput:
+            id: user
+            hint_text: 'User'
+            multiline: False
+            size_hint: (.8, None)
+            height: 40
+            pos_hint: {'center_x':.5, 'center_y':.5}
+        TextInput:
+            id: password
+            hint_text: 'Password'
+            password: True
+            multiline: False
+            size_hint: (.8, None)
+            height: 40
+            pos_hint: {'center_x':.5, 'center_y':.5}
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 5
+            size_hint: (.8, .1)
+            pos_hint: {'center_x':.5, 'center_y':.5}
+            Label:
+                text: "Esqueci minha senha"
+                color: 0,0,1,1
+                size_hint_y: 1
+            Label:
+                text: "Não tenho conta"
+                color: 0,0,1,1
+                size_hint_y: 1
+        Button:
+            text: 'Logar'
+            size_hint: (.8, None)
+            height: 40
+            pos_hint: {'center_x':.5, 'center_y':.5}
+        
+<Main>
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 90
+            Button:
+                background_normal: "images/ham.png"
+                halign: "right"
+                size_hint_x: None
+                height: 90
+            Image:
+                source:"images/placeholder-logo.png"
+                size_hint: (None, None)
+                height: 30
+                size_hint: .02, 1
+            Button:
+                background_normal: "images/conf.png"
+                halign: "right"
+                size_hint_x: None
+                height: 90
+        ScrollView:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation:'vertical'
+                size_hint: (1, .5)
+                heigth: self.minimum_height
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 50
+                    size_hint: (None, 1)
+                    width: self.minimum_width
+                    pos_hint: {'center_x':.5, 'center_y':.5}
+
+                    Button:
+                        text: "Enviar"
+                        size: 120, 100
+                        size_hint: None, None
+                    Button:
+                        text: "Registros"
+                        size: 120, 100
+                        size_hint: None, None
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 50
+                    size_hint: (None, 1)
+                    width: self.minimum_width
+                    pos_hint: {'center_x':.5, 'center_y':.5}
+
+                    Button:
+                        text: "Enviar"
+                        size: 120, 100
+                        size_hint: None, None
+                    Button:
+                        text: "Registros"
+                        size: 120, 100
+                        size_hint: None, None
