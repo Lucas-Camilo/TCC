@@ -1,9 +1,10 @@
 <Gerenciador>:
-    Main:
-        name: 'main'
+    GetVideo:
+        name:'getvideo'
     Login:
         name: 'login'
-
+    Main:
+        name: 'main'
 
 <Login>:
     BoxLayout:
@@ -48,6 +49,7 @@
             size_hint: (.8, None)
             height: 40
             pos_hint: {'center_x':.5, 'center_y':.5}
+            on_release: root.login()
         
 <Main>
     BoxLayout:
@@ -118,3 +120,9 @@
                                 width: 100
                                 font_size: '18'
                                 text: "Registro"
+<GetVideo>
+    BoxLayout
+        ScrollView
+            Label:
+                id: 'lgpd'
+                text: 'LGPD'
