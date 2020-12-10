@@ -11,9 +11,6 @@ class Gerenciador(ScreenManager):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-    def switch_screen(self, name):
-        self.current_screen = name
-
 
 class Login(Screen):
     def __init__(self, **kwargs):
@@ -54,11 +51,6 @@ class GetVideo(Screen):
 
     def get_video(self):
         print("pegando Video... ")
-
-    def getLGPD(self):
-        arquivo = open("LGPD", "r")
-        linha = arquivo.read()
-        self.ids.lgpd.text = str(linha)
 
 
 class Inicial(App):
