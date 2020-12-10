@@ -37,12 +37,14 @@
             size_hint: (.8, .1)
             pos_hint: {'center_x':.5, 'center_y':.5}
             Label:
+                markup: True
+                bold: True
                 text: "Esqueci minha senha"
-                color: 0,0,1,1
                 size_hint_y: 1
             Label:
-                text: "Não tenho conta"
-                color: 0,0,1,1
+                markup: True
+                bold: True
+                text: "Cadastre-se"
                 size_hint_y: 1
         Button:
             text: 'Logar'
@@ -50,7 +52,7 @@
             height: 40
             pos_hint: {'center_x':.5, 'center_y':.5}
             on_release: root.login()
-        
+
 <Main>
     BoxLayout:
         orientation: 'vertical'
@@ -122,7 +124,53 @@
                                 text: "Registro"
 <GetVideo>
     BoxLayout
-        ScrollView
-            Label:
-                id: 'lgpd'
-                text: 'LGPD'
+        orientation: "vertical"
+        spacing: 10
+        BoxLayout
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 200
+            size_hint_x: .9
+            pos_hint: {'center_x':.5, 'center_y':.5}
+            TextInput:
+                text: 'Para atender às exigências legais da Lei Geral de Proteção de Dados Pessoais (LGPD) e à Política de Segurança da Informação, é proibido a realização de prints'
+                size_hint_y: .9
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 100
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: 90
+                pos_hint: {'center_x':.5, 'center_y':.5}
+                spacing: 10
+                Image:
+                    source: 'images/claquete.png'
+                    border: 0,0,0,0
+                    size_hint: (None, None)
+                    width: 50
+                TextInput:
+                    hint_text: 'c:/'
+                    size_hint_y: None
+                    height: 30
+                    pos_hint: {'center_x':.5, 'center_y':.5}
+                Button:
+                    background_normal: 'images/enviar.png'
+                    size_hint: (None, None)
+                    border: 0,0,0,0
+                    height: 50
+                    width: 70
+                    pos_hint: {'center_x':.5, 'center_y':.5}
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 20
+                BoxLayout:
+                    size_hint: (.9, None)
+                    pos_hint: {'center_x':.5, 'center_y':.5}
+                    Button:
+                        text: 'Analizar'
+                        size_hint: (1,1)
+                Button:
+                    size_hint: (None, None)
+                    background_normal: 'images/voltar.png'
+                    border: 0,0,0,0

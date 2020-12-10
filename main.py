@@ -1,10 +1,10 @@
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang.builder import Builder
+from kivy.core.window import Window
+from kivy.utils import get_color_from_hex
 
-# from kivy.core.window import Window
-# import Cores
-# Window.clearcolor = Cores.AZUL
+Window.clearcolor = get_color_from_hex('5ca0c2')
 
 
 class Gerenciador(ScreenManager):
@@ -47,10 +47,18 @@ class Main(Screen):
 
 class GetVideo(Screen):
     def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+        super(GetVideo, self).__init__(**kwargs)
+
+    def on_enter(self, *args):
+        pass
 
     def get_video(self):
         print("pegando Video... ")
+
+    def getLGPD(self):
+        arquivo = open("LGPD", "r")
+        linha = arquivo.read()
+        self.ids.lgpd.text = str(linha)
 
 
 class Inicial(App):
