@@ -1,10 +1,10 @@
 <Gerenciador>:
-    GetVideo:
-        name:'getvideo'
     Login:
         name: 'login'
     Main:
         name: 'main'
+    GetVideo:
+        name:'getvideo'
 
 <Login>:
     BoxLayout:
@@ -91,6 +91,7 @@
                     Button:
                         size: 120, 120
                         size_hint: None, None
+                        on_release: root.manager.current = 'getvideo'
                         StackLayout:
                             pos: self.parent.pos
                             size: self.parent.size
@@ -141,6 +142,7 @@
             BoxLayout:
                 orientation: 'horizontal'
                 size_hint_y: None
+                size_hint_x: .9
                 height: 90
                 pos_hint: {'center_x':.5, 'center_y':.5}
                 spacing: 10
@@ -148,7 +150,7 @@
                     source: 'images/claquete.png'
                     border: 0,0,0,0
                     size_hint: (None, None)
-                    width: 50
+                    width: 40
                 TextInput:
                     hint_text: 'c:/'
                     size_hint_y: None
@@ -158,19 +160,23 @@
                     background_normal: 'images/enviar.png'
                     size_hint: (None, None)
                     border: 0,0,0,0
-                    height: 50
-                    width: 70
+                    height: 30
+                    width: 30
                     pos_hint: {'center_x':.5, 'center_y':.5}
             BoxLayout:
                 orientation: 'vertical'
                 spacing: 20
                 BoxLayout:
-                    size_hint: (.9, None)
+                    size_hint: (.4, None)
                     pos_hint: {'center_x':.5, 'center_y':.5}
+                    height: 50
                     Button:
-                        text: 'Analizar'
+                        text: 'Analisar'
                         size_hint: (1,1)
-                Button:
-                    size_hint: (None, None)
-                    background_normal: 'images/voltar.png'
-                    border: 0,0,0,0
+                BoxLayout:
+                    orientation: 'vertical'
+                    Button:
+                        size_hint: (None, None)
+                        height: 100
+                        background_normal: 'images/voltar.png'
+                        border: 0,0,0,0
