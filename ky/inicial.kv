@@ -1,10 +1,11 @@
 <Gerenciador>:
+    GetVideo:
+        name:'getvideo'
     Login:
         name: 'login'
     Main:
         name: 'main'
-    GetVideo:
-        name:'getvideo'
+
 
 <Login>:
     BoxLayout:
@@ -152,6 +153,7 @@
                     size_hint: (None, None)
                     width: 40
                 TextInput:
+                    id: caminho
                     hint_text: 'c:/'
                     size_hint_y: None
                     height: 30
@@ -163,6 +165,7 @@
                     height: 30
                     width: 30
                     pos_hint: {'center_x':.5, 'center_y':.5}
+                    on_release: root.get_video()
             BoxLayout:
                 orientation: 'vertical'
                 spacing: 20
@@ -181,3 +184,8 @@
                         background_normal: 'images/voltar.png'
                         border: 0,0,0,0
                         on_release: root.manager.current = 'main'
+<MyPopUp>
+    BoxLayout:
+        FileChooserIconView:
+            id: filechooser
+            on_selection: root.salvar(*args)

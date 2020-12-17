@@ -3,6 +3,9 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang.builder import Builder
 from kivy.core.window import Window
 from kivy.utils import get_color_from_hex
+from kivy.uix.popup import Popup
+
+from kivy.uix.filechooser import FileChooserIconView
 
 Window.clearcolor = get_color_from_hex('5ca0c2')
 
@@ -45,12 +48,30 @@ class Main(Screen):
 class GetVideo(Screen):
     def __init__(self, **kwargs):
         super(GetVideo, self).__init__(**kwargs)
+        self.arquivo_caminho = ""
+        self.pop = MyPopUp()
+        self.arquivos: FileChooserIconView = FileChooserIconView()
 
     def on_enter(self, *args):
         pass
 
     def get_video(self):
-        print("pegando Video... ")
+        self.pop = MyPopUp()
+        self.pop.open()
+        self.pop.on_dismiss = lambda *args: self.salvaCaminho()
+
+    def salvaCaminho(self):
+        self.ids.caminho.text = self.pop.caminho
+
+
+class MyPopUp(Popup):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.caminho = ""
+
+    def salvar(self, *args):
+        self.caminho = args[1][0]
+        self.dismiss()
 
 
 class Inicial(App):
