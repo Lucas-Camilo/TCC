@@ -4,15 +4,19 @@ from kivy.lang.builder import Builder
 from kivy.core.window import Window
 from kivy.utils import get_color_from_hex
 from kivy.uix.popup import Popup
-
-from kivy.uix.filechooser import FileChooserIconView
+from ClsVideo import Video
 
 Window.clearcolor = get_color_from_hex('5ca0c2')
+
+n_video = Video("")
 
 
 class Gerenciador(ScreenManager):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+    def set_screen(self, name):
+        self.current_screen = name
 
 
 class Login(Screen):
@@ -50,10 +54,6 @@ class GetVideo(Screen):
         super(GetVideo, self).__init__(**kwargs)
         self.arquivo_caminho = ""
         self.pop = MyPopUp()
-        self.arquivos: FileChooserIconView = FileChooserIconView()
-
-    def on_enter(self, *args):
-        pass
 
     def get_video(self):
         self.pop = MyPopUp()
@@ -62,6 +62,12 @@ class GetVideo(Screen):
 
     def salvaCaminho(self):
         self.ids.caminho.text = self.pop.caminho
+        self.arquivo_caminho = self.pop.caminho
+
+    def analizar(self):
+        global n_video
+        n_video = Video(self.arquivo_caminho)
+        self.manager.current = 'resultado'
 
 
 class MyPopUp(Popup):
@@ -72,6 +78,11 @@ class MyPopUp(Popup):
     def salvar(self, *args):
         self.caminho = args[1][0]
         self.dismiss()
+
+
+class Resultado(Screen):
+    pass
+
 
 
 class Inicial(App):

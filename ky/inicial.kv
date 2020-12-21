@@ -5,6 +5,8 @@
         name: 'login'
     Main:
         name: 'main'
+    Resultado:
+        name: 'resultado'
 
 
 <Login>:
@@ -176,6 +178,7 @@
                     Button:
                         text: 'Analisar'
                         size_hint: (1,1)
+                        on_release: root.analizar()
                 BoxLayout:
                     orientation: 'vertical'
                     Button:
@@ -184,8 +187,14 @@
                         background_normal: 'images/voltar.png'
                         border: 0,0,0,0
                         on_release: root.manager.current = 'main'
+<Resultado>
+    BoxLayout:
+        orientation: 'vertical'
+         BoxLayout:
+         
 <MyPopUp>
     BoxLayout:
         FileChooserIconView:
             id: filechooser
             on_selection: root.salvar(*args)
+            filters: ['*.mp4']
