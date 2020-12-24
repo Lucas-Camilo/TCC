@@ -1,11 +1,13 @@
-import cv2
-import os
 from pathlib import Path
-
+import cv2
+import glob
+import os
+import API_Conection as api
 
 class Video:
     def __init__(self, caminho : str):
         self.caminho = caminho
+        self.resultados = []
 
     def extrat_frames(self):
         video = cv2.VideoCapture(r"{}".format(self.caminho))
@@ -20,7 +22,6 @@ class Video:
             ret, frame = video.read()
             if ret:
                 name = './data/frame' + str(currentframe) + '.jpg'
-                print('Creating...' + name)
                 cv2.imwrite(name, frame)
                 currentframe += 1
             else:
@@ -36,4 +37,10 @@ class Video:
                 print("Erro", e)
 
     def analizar_usuario(self):
-        print("analizando")
+        fotos = 0
+        for filename in glob.glob('data/*.jpg'):
+            resultado = api.getEmotionsSDK(filename)
+            if resultado == 'erro':
+                break
+            self.resultados.append(resultado)
+            fotos += 1
