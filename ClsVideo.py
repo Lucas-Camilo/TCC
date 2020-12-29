@@ -8,6 +8,7 @@ class Video:
     def __init__(self, caminho : str):
         self.caminho = caminho
         self.resultados = []
+        self.final_resultados = {}
 
     def extrat_frames(self):
         video = cv2.VideoCapture(r"{}".format(self.caminho))
@@ -44,3 +45,29 @@ class Video:
                 break
             self.resultados.append(resultado)
             fotos += 1
+
+    def resultado_final(self):
+        angry, contempt, disgust, fear, happiness, neutral, sadness, surprise = 0, 0, 0, 0, 0, 0, 0, 0
+        for itens in self.resultados:
+            angry += itens['anger']
+            contempt += itens['contempt']
+            disgust += itens['disgust']
+            fear += itens['fear']
+            happiness += itens['happiness']
+            neutral += itens['neutral']
+            sadness += itens['sadness']
+            surprise += itens['surprise']
+
+        angry = angry / len(self.resultados)
+        contempt = contempt / len(self.resultados)
+        disgust = disgust / len(self.resultados)
+        fear = fear / len(self.resultados)
+        happiness = happiness / len(self.resultados)
+        neutral = neutral / len(self.resultados)
+        sadness = sadness / len(self.resultados)
+        surprise = surprise / len(self.resultados)
+
+        self.final_resultados = {
+            "anger": round(angry, 2), "contempt": round(contempt, 2), "disgust": round(disgust, 2),
+            "fear": round(fear, 2), "happiness": round(happiness, 2),
+            "neutral": round(neutral, 2), "sadness": round(sadness, 2), "surprise": round(surprise, 2)}

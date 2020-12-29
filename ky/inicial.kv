@@ -189,6 +189,7 @@
                         border: 0,0,0,0
                         on_release: root.manager.current = 'main'
 <Resultado>
+    on_pre_enter: root.mostrar_resultados()
     BoxLayout:
         orientation: 'vertical'
         BoxLayout:
@@ -200,20 +201,28 @@
         BoxLayout:
             orientation: 'vertical'
             Label:
+                id: raiva
                 text: 'Raiva ? %'
             Label:
+                id: medo
                 text: 'Medo ? %'
             Label:
+                id: nojo
                 text: 'Nojo ? %'
             Label:
+                id: felicidade
                 text: 'Feliciade ? %'
             Label:
+                id: tristeza
                 text: 'Tristeza ? %'
             Label:
+                id: surpresa
                 text: 'Surpresa ? %'
             Label:
+                id: desprezo
                 text: 'Desprezo ? %'
             Label:
+                id: neutro
                 text: 'Neutro ? %'
         BoxLayout:
             size_hint_y: None
@@ -224,10 +233,16 @@
                 text:'OK'
 
 <PopCarregando>
+    title: "Realizando análise"
+    size_hint: (None, None)
+    size: (350, 300)
     BoxLayout:
         Label:
             text: 'Carregando'
+            font_size: 30
 <MyPopUp>
+    title: ""
+    separator_height: 0
     BoxLayout:
         FileChooserIconView:
             id: filechooser

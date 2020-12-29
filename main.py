@@ -49,7 +49,6 @@ class GetVideo(Screen):
         super(GetVideo, self).__init__(**kwargs)
         self.arquivo_caminho = ""
         self.pop = MyPopUp()
-        self.carregando = PopCarregando()
 
     def get_video(self):
         self.pop = MyPopUp()
@@ -65,12 +64,24 @@ class GetVideo(Screen):
         n_video = Video(self.arquivo_caminho)
         n_video.extrat_frames()
         n_video.analizar_usuario()
+        n_video.resultado_final()
         self.manager.current = 'resultado'
 
 
 class Resultado(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+    def mostrar_resultados(self):
+        global n_video
+        self.ids.raiva.text = "Raiva: "+str(n_video.final_resultados['anger'])+" %"
+        self.ids.medo.text = "Medo: " + str(n_video.final_resultados['fear']) + " %"
+        self.ids.nojo.text = "Nojo: " + str(n_video.final_resultados['disgust']) + " %"
+        self.ids.felicidade.text = "Felicidade: " + str(n_video.final_resultados['happiness']) + " %"
+        self.ids.tristeza.text = "Tristeza: " + str(n_video.final_resultados['sadness']) + " %"
+        self.ids.surpresa.text = "Surpresa: " + str(n_video.final_resultados['surprise']) + " %"
+        self.ids.desprezo.text = "Desprezo: " + str(n_video.final_resultados['contempt']) + " %"
+        self.ids.neutro.text = "Neutro: " + str(n_video.final_resultados['neutral']) + " %"
 
 
 class PopCarregando(Popup):
