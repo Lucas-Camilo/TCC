@@ -1,4 +1,5 @@
 from pathlib import Path
+from time import sleep
 import cv2
 import glob
 import os
@@ -38,13 +39,19 @@ class Video:
                 print("Erro", e)
 
     def analizar_usuario(self):
-        fotos = 0
+        # Primeira tentativa de analise
+        removido = []
         for filename in glob.glob('data/*.jpg'):
             resultado = api.getEmotionsSDK(filename)
             if resultado == 'erro':
                 break
-            self.resultados.append(resultado)
-            fotos += 1
+            else:
+                self.resultados.append(resultado)
+                removido.append(filename)
+                os.remove(filename)
+        if os.listdir('data'):
+            sleep(3)
+            self.analizar_usuario()
 
     def resultado_final(self):
         angry, contempt, disgust, fear, happiness, neutral, sadness, surprise = 0, 0, 0, 0, 0, 0, 0, 0
@@ -57,17 +64,18 @@ class Video:
             neutral += itens['neutral']
             sadness += itens['sadness']
             surprise += itens['surprise']
-
-        angry = angry / len(self.resultados)
-        contempt = contempt / len(self.resultados)
-        disgust = disgust / len(self.resultados)
-        fear = fear / len(self.resultados)
-        happiness = happiness / len(self.resultados)
-        neutral = neutral / len(self.resultados)
-        sadness = sadness / len(self.resultados)
-        surprise = surprise / len(self.resultados)
+        if len(self.resultados) > 0:
+            angry = angry / len(self.resultados)
+            contempt = contempt / len(self.resultados)
+            disgust = disgust / len(self.resultados)
+            fear = fear / len(self.resultados)
+            happiness = happiness / len(self.resultados)
+            neutral = neutral / len(self.resultados)
+            sadness = sadness / len(self.resultados)
+            surprise = surprise / len(self.resultados)
 
         self.final_resultados = {
-            "anger": round(angry, 2), "contempt": round(contempt, 2), "disgust": round(disgust, 2),
-            "fear": round(fear, 2), "happiness": round(happiness, 2),
-            "neutral": round(neutral, 2), "sadness": round(sadness, 2), "surprise": round(surprise, 2)}
+            "anger": round(angry, 2) / 100, "contempt": round(contempt, 2), "disgust": round(disgust, 2) / 100,
+            "fear": round(fear, 2) / 100, "happiness": round(happiness, 2) / 100,
+            "neutral": round(neutral, 2) / 100, "sadness": round(sadness, 2) / 100, "surprise": round(surprise, 2) / 100
+        }

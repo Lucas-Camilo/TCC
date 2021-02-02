@@ -228,9 +228,10 @@
             size_hint_y: None
             height: 60
             Button:
-                text:'Tarefas'
+                text:'Exportar PDF'
             Button:
-                text:'OK'
+                text:'Sair'
+                on_release: root.manager.current = 'main'
 
 <PopCarregando>
     title: "Realizando análise"

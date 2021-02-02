@@ -5,6 +5,8 @@ from kivy.core.window import Window
 from kivy.utils import get_color_from_hex
 from kivy.uix.popup import Popup
 from ClsVideo import Video
+from threading import Thread
+
 Window.clearcolor = get_color_from_hex('4682B4')
 
 n_video = Video("")
@@ -63,7 +65,10 @@ class GetVideo(Screen):
         global n_video
         n_video = Video(self.arquivo_caminho)
         n_video.extrat_frames()
-        n_video.analizar_usuario()
+        # n_video.analizar_usuario()
+        thread = Thread(target=n_video.analizar_usuario)
+        thread.start()
+        thread.join()
         n_video.resultado_final()
         self.manager.current = 'resultado'
 
