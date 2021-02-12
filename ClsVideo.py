@@ -39,15 +39,13 @@ class Video:
                 print("Erro", e)
 
     def analizar_usuario(self):
-        # Primeira tentativa de analise
-        removido = []
+
         for filename in glob.glob('data/*.jpg'):
             resultado = api.getEmotionsSDK(filename)
             if resultado == 'erro':
                 break
             else:
                 self.resultados.append(resultado)
-                removido.append(filename)
                 os.remove(filename)
         if os.listdir('data'):
             sleep(3)
@@ -75,7 +73,7 @@ class Video:
             surprise = surprise / len(self.resultados)
 
         self.final_resultados = {
-            "anger": round(angry, 2) / 100, "contempt": round(contempt, 2), "disgust": round(disgust, 2) / 100,
-            "fear": round(fear, 2) / 100, "happiness": round(happiness, 2) / 100,
-            "neutral": round(neutral, 2) / 100, "sadness": round(sadness, 2) / 100, "surprise": round(surprise, 2) / 100
+            "anger": round(angry, 2) * 100, "contempt": round(contempt, 2) * 100, "disgust": round(disgust, 2) * 100,
+            "fear": round(fear, 2) * 100, "happiness": round(happiness, 2) * 100,
+            "neutral": round(neutral, 2) * 100, "sadness": round(sadness, 2) * 100, "surprise": round(surprise, 2) * 100
         }

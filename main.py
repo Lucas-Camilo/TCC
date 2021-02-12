@@ -5,6 +5,7 @@ from kivy.core.window import Window
 from kivy.utils import get_color_from_hex
 from kivy.uix.popup import Popup
 from ClsVideo import Video
+from ClsRelatorio import Relatorio
 from threading import Thread
 
 Window.clearcolor = get_color_from_hex('4682B4')
@@ -65,7 +66,6 @@ class GetVideo(Screen):
         global n_video
         n_video = Video(self.arquivo_caminho)
         n_video.extrat_frames()
-        # n_video.analizar_usuario()
         thread = Thread(target=n_video.analizar_usuario)
         thread.start()
         thread.join()
@@ -87,6 +87,12 @@ class Resultado(Screen):
         self.ids.surpresa.text = "Surpresa: " + str(n_video.final_resultados['surprise']) + " %"
         self.ids.desprezo.text = "Desprezo: " + str(n_video.final_resultados['contempt']) + " %"
         self.ids.neutro.text = "Neutro: " + str(n_video.final_resultados['neutral']) + " %"
+
+    def exportar_pdf(self):
+        global n_video
+        n_relatorio = Relatorio(n_video.resultados, n_video.final_resultados)
+        n_relatorio.criaPDF()
+        n_relatorio.criaTxt()
 
 
 class PopCarregando(Popup):
