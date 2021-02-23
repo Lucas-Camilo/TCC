@@ -66,6 +66,7 @@ class GetVideo(Screen):
         global n_video
         n_video = Video(self.arquivo_caminho)
         n_video.extrat_frames()
+        n_video.filtro()
         thread = Thread(target=n_video.analizar_usuario)
         thread.start()
         thread.join()

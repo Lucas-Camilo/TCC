@@ -73,7 +73,21 @@ class Video:
             surprise = surprise / len(self.resultados)
 
         self.final_resultados = {
-            "anger": round(angry, 2) * 100, "contempt": round(contempt, 2) * 100, "disgust": round(disgust, 2) * 100,
-            "fear": round(fear, 2) * 100, "happiness": round(happiness, 2) * 100,
-            "neutral": round(neutral, 2) * 100, "sadness": round(sadness, 2) * 100, "surprise": round(surprise, 2) * 100
+            "anger": round(angry, 2), "contempt": round(contempt, 2), "disgust": round(disgust, 2),
+            "fear": round(fear, 2), "happiness": round(happiness, 2),
+            "neutral": round(neutral, 2), "sadness": round(sadness, 2), "surprise": round(surprise, 2)
         }
+
+    def filtro(self):
+        frontal = 'train/haarcascade_frontalface_alt2.xml'
+        clf = cv2.CascadeClassifier(frontal)
+        comFace = []
+        for file in os.listdir('data'):
+            img = cv2.imread('data/{}'.format(file))
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            faces = clf.detectMultiScale(gray)
+            for x, y, w, h in faces:
+                comFace.append(file)
+        for file in os.listdir('data'):
+            if not file in comFace:
+                os.remove('data/'+file)
