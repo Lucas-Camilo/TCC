@@ -80,14 +80,22 @@ class Resultado(Screen):
 
     def mostrar_resultados(self):
         global n_video
-        self.ids.raiva.text = "Raiva: "+str(n_video.final_resultados['anger'])+" %"
-        self.ids.medo.text = "Medo: " + str(n_video.final_resultados['fear']) + " %"
-        self.ids.nojo.text = "Nojo: " + str(n_video.final_resultados['disgust']) + " %"
-        self.ids.felicidade.text = "Felicidade: " + str(n_video.final_resultados['happiness']) + " %"
-        self.ids.tristeza.text = "Tristeza: " + str(n_video.final_resultados['sadness']) + " %"
-        self.ids.surpresa.text = "Surpresa: " + str(n_video.final_resultados['surprise']) + " %"
-        self.ids.desprezo.text = "Desprezo: " + str(n_video.final_resultados['contempt']) + " %"
-        self.ids.neutro.text = "Neutro: " + str(n_video.final_resultados['neutral']) + " %"
+        self.ids.raiva.text = "Raiva: " + str(
+            n_video.final_resultados['anger']) + " %"
+        self.ids.medo.text = "Medo: " + str(
+            n_video.final_resultados['fear']) + " %"
+        self.ids.nojo.text = "Nojo: " + str(
+            n_video.final_resultados['disgust']) + " %"
+        self.ids.felicidade.text = "Felicidade: " + str(
+            n_video.final_resultados['happiness']) + " %"
+        self.ids.tristeza.text = "Tristeza: " + str(
+            n_video.final_resultados['sadness']) + " %"
+        self.ids.surpresa.text = "Surpresa: " + str(
+            n_video.final_resultados['surprise']) + " %"
+        self.ids.desprezo.text = "Desprezo: " + str(
+            n_video.final_resultados['contempt']) + " %"
+        self.ids.neutro.text = "Neutro: " + str(
+            n_video.final_resultados['neutral']) + " %"
 
     def exportar_pdf(self):
         global n_video
@@ -113,7 +121,8 @@ class MyPopUp(Popup):
 
 class Inicial(App):
     def build(self):
-        Builder.load_string(open("ky/inicial.kv", encoding="utf-8").read(), rulesonly=True)
+        Builder.load_string(open("ky/inicial.kv", encoding="utf-8").read(),
+                            rulesonly=True)
         m = Gerenciador()
         self.icon = "images/Logo.png"
         return m
