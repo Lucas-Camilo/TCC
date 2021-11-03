@@ -43,6 +43,7 @@ class Relatorio:
         self.pdf.cell(200, 10, txt="Surpreza:{}{}%".format(" " * 25, self.resultadoFinal['surprise']), ln=1, align="L")
         #
         self.pdf.cell(200, 10, txt="Neutro:{}{}%".format(" " * 29, self.resultadoFinal['neutral']), ln=1, align="L")
+        #
         self.pdf.output("relatoriosPDF/{}.pdf".format(self.nome_arquivo))
 
     def criaTxt(self):

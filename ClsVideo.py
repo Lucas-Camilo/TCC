@@ -39,7 +39,7 @@ class Video:
                 print("Erro", e)
 
     def analizar_usuario(self):
-
+        
         for filename in glob.glob('data/*.jpg'):
             resultado = api.getEmotionsSDK(filename)
             if resultado == 'erro':
